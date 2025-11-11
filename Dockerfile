@@ -5,7 +5,7 @@ COPY E-comerce_Mujeres_Cajamarca/pom.xml .
 COPY E-comerce_Mujeres_Cajamarca/src ./src
 RUN mvn clean package -DskipTests
 
-FROM openjdk:17-jre-slim
+FROM eclipse-temurin:17-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8085
