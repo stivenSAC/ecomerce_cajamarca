@@ -1,8 +1,8 @@
 # Multi-stage build para el backend
 FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
-COPY E-comerce_Mujeres_Cajamarca/pom.xml .
-COPY E-comerce_Mujeres_Cajamarca/src ./src
+COPY ./E-comerce_Mujeres_Cajamarca/pom.xml ./pom.xml
+COPY ./E-comerce_Mujeres_Cajamarca/src ./src
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jre
