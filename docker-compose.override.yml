@@ -1,0 +1,25 @@
+# Configuración para desarrollo local
+# Este archivo se usa automáticamente con docker-compose
+
+services:
+  postgres:
+    environment:
+      - POSTGRES_DB=ecommerce_cajamarca_dev
+    volumes:
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    ports:
+      - "5432:5432"
+      
+  backend:
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_JPA_SHOW_SQL=true
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=DEBUG
+    volumes:
+      - ./E-comerce_Mujeres_Cajamarca/target:/app/target
+      
+  frontend:
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./ecommerceCajamrca-frontend/src:/app/src
